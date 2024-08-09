@@ -1,1 +1,1 @@
-# MLOps_Zoomcamp
+# Personalized Recipe Generator
