@@ -1,3 +1,9 @@
+# Project dataset
+dataset_full/
+dataset_full_in_parts/
+playground_prg/
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
