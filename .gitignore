@@ -1,6 +1,11 @@
+# Project secrets
+.env
+
 # Project dataset
 dataset_full/
 dataset_full_in_parts/
+
+# Project misc
 playground_prg/
 
 
