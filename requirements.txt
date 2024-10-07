@@ -10,9 +10,14 @@ langchain
 langchain_community
 langchain_experimental
 langchain_openai
+langsmith
 openai
 streamlit
+streamlit_feedback
 # pypdf
 # chromadb
-duckdb
-duckdb-engine
+# duckdb
+# duckdb-engine
+mysql-connector-python
+sqlalchemy
+python-dotenv
