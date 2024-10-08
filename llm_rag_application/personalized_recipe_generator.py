@@ -41,7 +41,11 @@ st.session_state.db = db
 print(db.dialect)
 print(db.get_usable_table_names())  # This should list the newly created table
 
-def get_sql_chain_prg(db):
+def get_sql_chain_prg(db: SQLDatabase, model_choice: str):
+
+    model=model_choice.split('/')[-1]
+    print(f"selected LLM model: {model}")
+
     template = """
         You are a world's renowned chef, who can create a dish with any ingredients that are given to you.
         You have a tremendous experience in a varitey of cuisines, like for example continental, indian, mexican,
@@ -83,7 +87,7 @@ def get_sql_chain_prg(db):
     prompt = ChatPromptTemplate.from_template(template)
   
     llm = ChatOpenAI(temperature=0, 
-                 model="gpt-4o-mini")
+                 model=model) # "gpt-4o-mini"
     
     def get_schema(_):
         return db.get_table_info()
@@ -101,16 +105,14 @@ def get_sql_chain_prg(db):
         | StrOutputParser()
     )
 
-    # sql_chain.invoke({"question": {question}})
-    # print('In get_sql_chain_prg() function')
-    # print(f"generated SQL query: {sql_chain}")
-    # print(db.dialect)
-    # print(db.get_usable_table_names())  # This should list the newly created table
 
-def get_response(user_query: str, db: SQLDatabase, chat_history: list):
+def get_response(user_query: str, model_choice: str, db: SQLDatabase, chat_history: list):
     
-    sql_query_chain = get_sql_chain_prg(db)
+    sql_query_chain = get_sql_chain_prg(db, model_choice)
     print(f"generated SQL query: {sql_query_chain}")
+
+    model=model_choice.split('/')[-1]
+    print(f"selected LLM model: {model}")
 
     full_chain_template = """
         You are a world's renowned chef, who can create a dish with any ingredients that are given to you.
@@ -139,7 +141,7 @@ def get_response(user_query: str, db: SQLDatabase, chat_history: list):
     prompt = ChatPromptTemplate.from_template(full_chain_template)
     
     llm = ChatOpenAI(temperature=0, 
-                    model="gpt-4o-mini")
+                    model=model) # "gpt-4o-mini"
     chain = (
         RunnablePassthrough.assign(query=sql_query_chain).assign(
         schema=lambda _: db.get_table_info(),
@@ -161,6 +163,13 @@ os.environ["LANGCHAIN_TRACING_V2"] = "true"
 os.environ["LANGCHAIN_PROJECT"] = "PRG RAG App Eval Experiments"
 os.environ["LANGCHAIN_ENDPOINT"] = "https://api.smith.langchain.com"
 client = Client()
+
+# Model selection
+model_choice = st.sidebar.selectbox(
+    "Select a model:",
+    ["openai/gpt-3.5-turbo", "openai/gpt-4o-mini"],
+)
+print(f"User selected model: {model_choice}")
 
 if "chat_history" not in st.session_state:
   st.session_state.chat_history = [
@@ -189,7 +198,7 @@ if user_query is not None and user_query.strip() != "":
     with st.chat_message("AI"):
         # response = get_response_loyalty_customer(user_query, st.session_state.db, st.session_state.chat_history)
         with collect_runs() as runs_cb:
-            response = get_response(user_query, 
+            response = get_response(user_query, model_choice, 
                                     st.session_state.db, 
                                     st.session_state.chat_history)
             st.markdown(response)
