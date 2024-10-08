@@ -29,6 +29,7 @@ Depending upon if you have used LangSmith before or if it is the first time you 
 *Note: When you set up the project rules for the very first time, LangSmith will prompt you to provide the LANGHAIN_API_KEY.*  
 
 #### Add Rule - Guardrails (Tagging)
+After following steps 1 - 11 in the previous section, please set up the guardrails evaluator prompt as presented in the next three figures. Please note that guardrails mean that if you enter any personal information, threats, insults, and/ or highly negative comments, then it will be flagged by our guardrails evaluator.
 
 ![langsmith](../images/langsmith_rules_rg_7.png)
 
@@ -38,6 +39,7 @@ Depending upon if you have used LangSmith before or if it is the first time you 
 
 
 #### Add Rule - Document Relevance Precision
+Please set up the document relevance precision evaluator prompt as presented in the next three figures.
 
 ![langsmith](../images/langsmith_rules_prec_10.png)
 
@@ -47,6 +49,7 @@ Depending upon if you have used LangSmith before or if it is the first time you 
 
 
 #### Add Rule - Answer Helpfulness
+Please set up the answer helpfulness evaluator prompt as presented in the next three figures.
 
 ![langsmith](../images/langsmith_rules_help_13.png)
 
@@ -56,6 +59,7 @@ Depending upon if you have used LangSmith before or if it is the first time you 
 
 
 #### Add Rule - Hallucination
+Please set up the hallucination evaluator prompt as presented in the next three figures.
 
 ![langsmith](../images/langsmith_rules_hall_16.png)
 
