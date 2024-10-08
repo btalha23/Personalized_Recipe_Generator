@@ -55,3 +55,5 @@ OPENAI\_API\_KEY=<YOUR\_OPENAI\_API\_KEY>
 LANGCHAIN\_API\_KEY=<YOUR\_LANGCHAIN\_API\_KEY>
 
 ```
+
+*NOTE: Please refer to [Setup](setup/monitoring.md) for pointers about how to get the required API key for LangChain.*
