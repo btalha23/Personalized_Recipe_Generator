@@ -107,6 +107,7 @@ The exploratory data analysis and initial model training is done in Jupyter a no
 ### Get Going
 
 - Setup for running the application locally - [Setup](setup/local_project_setup.md)
+- Basic model monitoring - [Setup](setup/monitoring.md)
 
 ### Further Improvement
 
