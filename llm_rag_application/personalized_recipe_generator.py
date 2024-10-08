@@ -41,7 +41,6 @@ st.session_state.db = db
 print(db.dialect)
 print(db.get_usable_table_names())  # This should list the newly created table
 
-@traceable()
 def get_sql_chain_prg(db):
     template = """
         You are a world's renowned chef, who can create a dish with any ingredients that are given to you.
@@ -108,7 +107,6 @@ def get_sql_chain_prg(db):
     # print(db.dialect)
     # print(db.get_usable_table_names())  # This should list the newly created table
 
-@traceable()
 def get_response(user_query: str, db: SQLDatabase, chat_history: list):
     
     sql_query_chain = get_sql_chain_prg(db)
@@ -163,8 +161,6 @@ os.environ["LANGCHAIN_TRACING_V2"] = "true"
 os.environ["LANGCHAIN_PROJECT"] = "PRG RAG App Eval Experiments"
 os.environ["LANGCHAIN_ENDPOINT"] = "https://api.smith.langchain.com"
 client = Client()
-# run_collector = RunCollectorCallbackHandler()
-
 
 if "chat_history" not in st.session_state:
   st.session_state.chat_history = [
