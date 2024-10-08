@@ -8,9 +8,12 @@ Make sure `git` is installed on your local machine. If not, then
 
 
 Since the LLM RAG is basically a text-to-SQL chain, it is required that MySQL database server is running on your local machine. For this reason,
+
 1. got to [MySQL Community Installer](https://dev.mysql.com/downloads/installer/)
 2. download the installer for your operating system, and
 3. follow the instructions to complete the installation.
+
+**NOTE: use *root* for both username and password of the database.**
 
 Clone the repository in your local machine.
 
@@ -39,4 +42,16 @@ To run the Personalized Recipe Generator application to have to come out of `exp
 cd .. && \
 cd llm_rag_application && \
 streamlit run personalized_recipe_generator.py
+```
+
+**IMPORTANT: In order for the Streamlit app and LangSmith monitoring to work, you need to create a `.env` file in the root directory. Root directory is the one where you can find READMED.md and the requirements.txt files.**
+
+There are OPENAI and LanhChain API keys in the `.env`file. It should look something like
+
+```
+
+OPENAI\_API\_KEY=<YOUR\_OPENAI\_API\_KEY>
+
+LANGCHAIN\_API\_KEY=<YOUR\_LANGCHAIN\_API\_KEY>
+
 ```
