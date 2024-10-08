@@ -1,0 +1,23 @@
+pandas
+numpy
+matplotlib
+seaborn
+wordcloud
+scikit-learn
+keras
+tabulate
+langchain
+langchain_community
+langchain_experimental
+langchain_openai
+langsmith
+openai
+streamlit
+streamlit_feedback
+# pypdf
+# chromadb
+# duckdb
+# duckdb-engine
+mysql-connector-python
+sqlalchemy
+python-dotenv
