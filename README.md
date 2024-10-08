@@ -67,6 +67,36 @@ The exploratory data analysis and initial model training is done in Jupyter a no
 
 ![streamlit](images/streamlit_app_3.png)
 
+![streamlit](images/streamlit_app_4.png)
+
+![streamlit](images/streamlit_app_5.png)
+
+![streamlit](images/streamlit_app_6.png)
+
+![streamlit](images/streamlit_app_7.png)
+
+![streamlit](images/streamlit_app_8.png)
+
+
+### LLM RAG Application Run Traces & Monitoring
+
+![langsmith](images/langsmith_traces_1.png)
+
+![langsmith](images/langsmith_traces_2.png)
+
+![langsmith](images/langsmith_monitor_1.png)
+
+![langsmith](images/langsmith_monitor_2.png)
+
+![langsmith](images/langsmith_monitor_3.png)
+
+![langsmith](images/langsmith_monitor_4.png)
+
+![langsmith](images/langsmith_dashboard_1.png)
+
+![langsmith](images/langsmith_dashboard_2.png)
+
+
 ## Setup
 
 **WARNING: You will be charged for using OpenAI models.**
