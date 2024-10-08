@@ -51,3 +51,36 @@ Moreover, food waste is a growing concern globally, and individuals often strugg
 - LLM RAG Application Monitoring - [**LangSmith**](https://smith.langchain.com/)
 - Language - [**Python**](https://www.python.org) 
 
+### Architecture
+
+![architecture](images/architecture.png)
+
+### Exploratory Data Analysis and Initial Model Training
+The exploratory data analysis and initial model training is done in Jupyter a notebook. This notebook is available in the `exploratory_data_analysis` directory. [Setup](setup/exploratory_data_analysis.md).
+
+
+### Personalized Recipe Generator (LLM RAG Application)
+
+![streamlit](images/streamlit_app_1.png)
+
+![streamlit](images/streamlit_app_2.png)
+
+![streamlit](images/streamlit_app_3.png)
+
+## Setup
+
+**WARNING: You will be charged for using OpenAI models.**
+
+### Pre-requisites
+
+
+### Get Going
+
+- Setup for running the application locally - [Setup](setup/local_project_setup.md)
+
+### Further Improvement
+
+TDB
+
+### Special Mentions
+I'd like to acknowledge the efforts of the [DataTalks.Club](https://datatalks.club) team for offering this LLM course at absolutely no costs. There is no doubt about it that I have learnt a lot. This hands-on project enabled me to apply what I learnt during the course. [LLM Zoomcamp](https://github.com/DataTalksClub/llm-zoomcamp) a highly recommended course to everybody who is interested in developing their skills in LLMs. 
