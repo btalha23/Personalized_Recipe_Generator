@@ -6,12 +6,14 @@ from langchain_openai import ChatOpenAI
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.tracers.run_collector import RunCollectorCallbackHandler
+from langchain_core.tracers.context import collect_runs
 from langsmith import traceable
 from langsmith import Client
 import streamlit as st
-# from streamlit_feedback import streamlit_feedback
+from streamlit_feedback import streamlit_feedback
 from dotenv import load_dotenv, find_dotenv
 import os
+import time
 
 
 # # Database connection details
@@ -159,6 +161,10 @@ st.title("Personalized Recipe Generator")
 load_dotenv(find_dotenv())
 os.environ["LANGCHAIN_TRACING_V2"] = "true"
 os.environ["LANGCHAIN_PROJECT"] = "PRG RAG App Eval Experiments"
+os.environ["LANGCHAIN_ENDPOINT"] = "https://api.smith.langchain.com"
+client = Client()
+# run_collector = RunCollectorCallbackHandler()
+
 
 if "chat_history" not in st.session_state:
   st.session_state.chat_history = [
@@ -186,9 +192,35 @@ if user_query is not None and user_query.strip() != "":
         
     with st.chat_message("AI"):
         # response = get_response_loyalty_customer(user_query, st.session_state.db, st.session_state.chat_history)
-        response = get_response(user_query, 
-                                st.session_state.db, 
-                                st.session_state.chat_history)
-        st.markdown(response)
+        with collect_runs() as runs_cb:
+            response = get_response(user_query, 
+                                    st.session_state.db, 
+                                    st.session_state.chat_history)
+            st.markdown(response)
+            st.session_state.last_run = runs_cb.traced_runs[0].id
         
     st.session_state.chat_history.append(AIMessage(content=response))
+    
+@st.cache_data(ttl="2h", show_spinner=False)
+def get_run_url(run_id):
+    time.sleep(1)
+    return client.read_run(run_id).url
+
+
+if st.session_state.get("last_run"):
+    run_url = get_run_url(st.session_state.last_run)
+    st.sidebar.markdown(f"[Latest Trace: 🛠️]({run_url})")
+    feedback = streamlit_feedback(
+        feedback_type="faces",
+        optional_text_label="[Optional] Please provide an explanation",
+        key=f"feedback_{st.session_state.last_run}",
+    )
+    if feedback:
+        scores = {"😀": 1, "🙂": 0.75, "😐": 0.5, "🙁": 0.25, "😞": 0}
+        client.create_feedback(
+            st.session_state.last_run,
+            feedback["type"],
+            score=scores[feedback["score"]],
+            comment=feedback.get("text", None),
+        )
+        st.toast("Feedback recorded!", icon="📝")
