@@ -48,7 +48,7 @@ aws --version
 
 echo "Installing MySQL..."
 cd ~/software && wget https://dev.mysql.com/get/mysql-apt-config_0.8.12-1_all.deb
-sudo dpkg -i ~/software/mysql-apt-config_0.8.15-1_all.deb
+sudo dpkg -i mysql-apt-config_0.8.15-1_all.deb
 
 sudo apt update
 sudo apt install -f mysql-client=8.0* mysql-community-server=8.0* mysql-server=8.0*
