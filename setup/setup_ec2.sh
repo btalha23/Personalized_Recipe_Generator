@@ -47,18 +47,19 @@ echo "aws cli version..."
 aws --version
 
 echo "Installing MySQL..."
-sudo apt install -y https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
-sudo apt install -y mysql-community-server
+cd ~/software && wget https://dev.mysql.com/get/mysql-apt-config_0.8.12-1_all.deb
+sudo dpkg -i ~/software/mysql-apt-config_0.8.15-1_all.deb
+
+sudo apt update
+sudo apt install -f mysql-client=8.0* mysql-community-server=8.0* mysql-server=8.0*
+echo "aws cli version..."
+mysql –V
+
+mysqladmin -u root -p version
 
 sudo systemctl start mysqld 
 sudo systemctl enable mysqld 
 
-# Retrieve the temporary password for the MySQL root user
-temp_password=$$(sudo grep 'temporary password' /var/log/mysqld.log | awk '{print $$NF}')
-echo "Temporary MySQL root password: $$temp_password"
-
-# Login to MySQL with the root user, change the password, and log out
-echo "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'MyNewPass1!';\nEXIT;" | mysql -u root -p"$$temp_password" --connect-expired-password
 
 
 
