@@ -26,11 +26,11 @@ def get_file_path() -> str:
     current_path = os.getcwd()
     print(current_path)
 
-    os.chdir('../dataset/')
+    os.chdir('dataset/')
     path_base_dataset = os.getcwd()
     print(path_base_dataset)
 
-    os.chdir('../containerization/')
+    os.chdir('../')
     path_base_container = os.getcwd()
     print(path_base_container)
 

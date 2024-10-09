@@ -9,6 +9,6 @@ COPY .env /root_dir/
 COPY requirements.txt /root_dir/
 RUN pip install --no-cache-dir -r /root_dir/requirements.txt
 
-COPY containerization/ /root_dir/containerization/
+COPY . /root_dir/
 
-CMD ["streamlit", "run", "/root_dir/containerization/personalized_recipe_generator.py"]
+CMD ["streamlit", "run", "/root_dir/personalized_recipe_generator.py"]

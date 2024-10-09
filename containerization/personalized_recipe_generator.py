@@ -18,12 +18,18 @@ import time
 
 
 # # Database connection details
-server = 'rag_application_server'
-prg_database_name = 'personalized_recipe_generator'
-user = 'root'
-password = 'root'
-host="localhost"
-port="3306"
+# server = 'rag_application_server'
+# prg_database_name = 'personalized_recipe_generator'
+# user = 'root'
+# password = 'root'
+# host="localhost"
+# port="3306"
+user = os.getenv('MYSQL_USER', 'root') #'root'
+password = os.getenv('MYSQL_PASSWORD', 'root')
+host = os.getenv('MYSQL_HOST', 'localhost')
+port = os.getenv('MYSQL_PORT', '3306')
+prg_database_name = os.getenv('MYSQL_DATABASE', 'personalized_recipe_generator')
+
 
 def init_database(user: str, password: str, host: str, port: str, database: str) -> SQLDatabase:
   db_uri = f"mysql+mysqlconnector://{user}:{password}@{host}:{port}/{database}"
