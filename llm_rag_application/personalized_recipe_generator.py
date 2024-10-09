@@ -167,7 +167,7 @@ client = Client()
 # Model selection
 model_choice = st.sidebar.selectbox(
     "Select a model:",
-    ["openai/gpt-3.5-turbo", "openai/gpt-4o-mini"],
+    ["openai/gpt-4o-mini", "openai/gpt-3.5-turbo"],
 )
 print(f"User selected model: {model_choice}")
 
