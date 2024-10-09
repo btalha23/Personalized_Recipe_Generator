@@ -47,8 +47,8 @@ echo "aws cli version..."
 aws --version
 
 echo "Installing MySQL..."
-sudo yum install -y https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
-sudo yum install -y mysql-community-server
+sudo apt install -y https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
+sudo apt install -y mysql-community-server
 
 sudo systemctl start mysqld 
 sudo systemctl enable mysqld 
