@@ -54,10 +54,6 @@ Moreover, food waste is a growing concern globally, and individuals often strugg
 
 TBD
 
-### Exploratory Data Analysis
-The exploratory data analysis and initial model training is done in Jupyter a notebook. This notebook is available in the `exploratory_data_analysis` directory. 
-
-
 ### Personalized Recipe Generator (LLM RAG Application)
 
 ![streamlit](images/streamlit_app_1.png)
