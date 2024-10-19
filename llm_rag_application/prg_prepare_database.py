@@ -38,8 +38,8 @@ def db_establish_connection(user: str, password: str, host: str, database: str):
     connection = mysql.connector.connect(
         host=host,
         user=user,
-        password=password,
-        database='information_schema'
+        password=password
+        # database='information_schema'
     )
 
     cursor = connection.cursor()
