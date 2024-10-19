@@ -25,4 +25,4 @@ echo "Log in to the MySQL database server as root...."
 sudo mysql -u root -pmysqlpswd
 
 echo "Change root user password..."
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
+sudo mysql ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
