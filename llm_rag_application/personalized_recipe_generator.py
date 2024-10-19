@@ -12,7 +12,7 @@ from langsmith import Client
 import streamlit as st
 from streamlit_feedback import streamlit_feedback
 from dotenv import load_dotenv, find_dotenv
-from prg_prepare_database import prg_prepare_database
+from prg_prepare_database import get_db_uri, prg_prepare_database
 import os
 import time
 
@@ -26,21 +26,22 @@ host="localhost"
 port="3306"
 
 def init_database(user: str, password: str, host: str, port: str, database: str) -> SQLDatabase:
-  db_uri = f"mysql+mysqlconnector://{user}:{password}@{host}:{port}/{database}"
+#   db_uri = f"mysql+mysqlconnector://{user}:{password}@{host}:{port}/{database}"
+  db_uri = get_db_uri(user=user, password=password, host=host, port=port, database=database)
   return SQLDatabase.from_uri(db_uri)
 
-# # Now, you can interact with this table using LangChain's SQLDatabase
-db = init_database(
-  user=user,
-  password=password,
-  host=host,
-  port=port,
-  database=prg_database_name
-  )
-st.session_state.db = db
-# Verify by printing the list of tables in the database
-print(db.dialect)
-print(db.get_usable_table_names())  # This should list the newly created table
+# # # Now, you can interact with this table using LangChain's SQLDatabase
+# db = init_database(
+#   user=user,
+#   password=password,
+#   host=host,
+#   port=port,
+#   database=prg_database_name
+#   )
+# st.session_state.db = db
+# # Verify by printing the list of tables in the database
+# print(db.dialect)
+# print(db.get_usable_table_names())  # This should list the newly created table
 
 def get_sql_chain_prg(db: SQLDatabase, model_choice: str):
 
@@ -168,6 +169,19 @@ client = Client()
 
 # Prepare the knowledge database
 prg_prepare_database()
+
+# # Now, you can interact with this table using LangChain's SQLDatabase
+db = init_database(
+  user=user,
+  password=password,
+  host=host,
+  port=port,
+  database=prg_database_name
+  )
+st.session_state.db = db
+# Verify by printing the list of tables in the database
+print(db.dialect)
+print(db.get_usable_table_names())  # This should list the newly created table
 
 # Model selection
 model_choice = st.sidebar.selectbox(

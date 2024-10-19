@@ -38,12 +38,13 @@ def db_establish_connection(user: str, password: str, host: str, database: str):
     connection = mysql.connector.connect(
         host=host,
         user=user,
-        password=password
+        password=password,
+        database='information_schema'
     )
 
     cursor = connection.cursor()
     
-    print(f"Connection to MySQL server successfully established with username {user}, password {password}, and host {localhost}") 
+    print(f"Connection to MySQL server successfully established with username {user}, password {password}, and host {host}") 
 
     # Create a new database
     prg_database_name = database
