@@ -2,7 +2,7 @@
 
 The first few minutes of [this video by Alexey](https://www.youtube.com/watch?v=IXSiYkP23zo) is recommended for understanding how it's done. You can then follow the below steps.
 
-Launch a new EC2 instance. An Ubuntu OS (Ubuntu Server 24.04 LTS (HVM), SSD Volume Type, Architecture 64-bit (x86)) and a t2.large instance type, a 30Gb gp2 storage are recommended. 
+Launch a new EC2 instance. An Ubuntu OS (Ubuntu Server 24.04 LTS (HVM), SSD Volume Type, Architecture 64-bit (x86)) and a t2.large instance type, a 30Gb gp3 storage are recommended. 
 
 **Note** - Billing will start as soon as the instance is created and run.
 
@@ -45,8 +45,6 @@ After making these changes to `.ssh/config` file, you can SSH into the server us
 ssh prg-llm-project
 ```
 
-Exploiting the concepts of port forwarding, it is possible to see the results of MLflow experiment tracking and Prefect workflow orchestration. Please refer to [this video by Alexey](https://youtu.be/IXSiYkP23zo?si=D1v6gBw-EZHnW5_V) from the timestamp 11.49 onwards to learn how to setup port forwarding.
-
 ## Virtual Machine EC2 SSH Setup
 
 Make sure `make` and `git` are installed on the EC2 instance. If not, install them using the following command:
@@ -76,10 +74,3 @@ Answer to the prompts/ questions that appear on the console window when the make
 ![anaconda](../images/anaconda_2.png)
 
 ![anaconda](../images/anaconda_3.png)
-
- 
-Configure the AWS CLI using the command `aws configure`. This is required for using & accessing the S3 bucket. You'll need to provide the `AWS_ACCESS_KEY` and `AWS_SECRET_ACCESS_KEY` along with the `AWS_REGION` and `AWS_OUTPUT_FORMAT` (optional).
-    - AWS Access Key ID [None]: The access key id from IAM 
-    - AWS Secret Access Key [None]: The Secret key id from IAM
-
-If you are not sure how to get/ where to find the required keys, please refer to the document [here](setup/aws_account.md).
