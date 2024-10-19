@@ -39,7 +39,6 @@ def db_establish_connection(user: str, password: str, host: str, database: str):
         host=host,
         user=user,
         password=password
-        # database='information_schema'
     )
 
     cursor = connection.cursor()
@@ -100,7 +99,7 @@ def prg_prepare_database():
    print("Now calling db_establish_connection() function")
    
    db_establish_connection(user=user, password=password, host=host, database=prg_database_name)
-   print(f"Connect with the database established successfully")
+   print(f"Connection with the database established successfully")
    print("Now calling get_db_uri() function")
    
    db_uri = get_db_uri(user=user, password=password, host=host, port=port, database=prg_database_name)

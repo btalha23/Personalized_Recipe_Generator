@@ -26,22 +26,8 @@ host="localhost"
 port="3306"
 
 def init_database(user: str, password: str, host: str, port: str, database: str) -> SQLDatabase:
-#   db_uri = f"mysql+mysqlconnector://{user}:{password}@{host}:{port}/{database}"
   db_uri = get_db_uri(user=user, password=password, host=host, port=port, database=database)
   return SQLDatabase.from_uri(db_uri)
-
-# # # Now, you can interact with this table using LangChain's SQLDatabase
-# db = init_database(
-#   user=user,
-#   password=password,
-#   host=host,
-#   port=port,
-#   database=prg_database_name
-#   )
-# st.session_state.db = db
-# # Verify by printing the list of tables in the database
-# print(db.dialect)
-# print(db.get_usable_table_names())  # This should list the newly created table
 
 def get_sql_chain_prg(db: SQLDatabase, model_choice: str):
 
