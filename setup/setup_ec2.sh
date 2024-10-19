@@ -80,7 +80,7 @@ echo "Installing necessary packages..."
 
 pip install pandas numpy matplotlib seaborn wordcloud scikit-learn keras tabulate
 pip install langchain langchain_community langchain_experimental langchain_openai langsmith openai
-pip install streamlit=1.38.0 
+pip install streamlit==1.38.0 
 pip install streamlit_feedback
 pip install mysql-connector-python sqlalchemy
 pip install python-dotenv
