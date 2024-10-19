@@ -12,6 +12,7 @@ from langsmith import Client
 import streamlit as st
 from streamlit_feedback import streamlit_feedback
 from dotenv import load_dotenv, find_dotenv
+from prg_prepare_database import prg_prepare_database
 import os
 import time
 
@@ -162,7 +163,11 @@ load_dotenv(find_dotenv())
 os.environ["LANGCHAIN_TRACING_V2"] = "true"
 os.environ["LANGCHAIN_PROJECT"] = "PRG RAG App Eval Experiments"
 os.environ["LANGCHAIN_ENDPOINT"] = "https://api.smith.langchain.com"
+
 client = Client()
+
+# Prepare the knowledge database
+prg_prepare_database()
 
 # Model selection
 model_choice = st.sidebar.selectbox(
