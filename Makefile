@@ -1,2 +1,3 @@
-setup_ec2_mysql:
-	bash setup/setup_ec2_mysql.sh
+setup_ec2:
+	bash setup/setup_ec2.sh && \
+	exec newgrp docker
