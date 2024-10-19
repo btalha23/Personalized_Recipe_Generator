@@ -42,6 +42,8 @@ def db_establish_connection(user: str, password: str, host: str, database: str):
     )
 
     cursor = connection.cursor()
+    
+    print(f"Connection to MySQL server successfully established with username {user}, password {password}, and host {host}") 
 
     # Create a new database
     prg_database_name = database
@@ -90,7 +92,15 @@ def db_populate_table(db_uri: str, df: pd.DataFrame):
 def prg_prepare_database():
    
    filename = get_file_path()
+   print(f"File path {filename}")
+   
    df = read_csv_data(filename=filename)
+   print(f"{df.head()}")
+   print("Now calling db_establish_connection() function")
+   
    db_establish_connection(user=user, password=password, host=host, database=prg_database_name)
+   print(f"Connection with the database established successfully")
+   print("Now calling get_db_uri() function")
+   
    db_uri = get_db_uri(user=user, password=password, host=host, port=port, database=prg_database_name)
    db_populate_table(db_uri=db_uri, df=df)
